@@ -238,7 +238,7 @@ where $p$ is the cache hit probability
 
 ---
 
-<!-- _backgroundImage: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80') -->
+<!-- _backgroundImage: url(https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80) -->
 <!-- _color: white -->
 
 <div style="background-color: rgba(0, 0, 0, 0.75); padding: 40px; border-radius: 10px;">
