@@ -238,6 +238,28 @@ where $p$ is the cache hit probability
 
 ---
 
+<!-- _backgroundImage: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80') -->
+<!-- _color: white -->
+
+<div style="background-color: rgba(0, 0, 0, 0.75); padding: 40px; border-radius: 10px;">
+
+# Global Infrastructure
+
+## Deployed Across 12 Regions Worldwide
+
+- **North America:** 4 availability zones
+- **Europe:** 4 availability zones  
+- **Asia Pacific:** 3 availability zones
+- **South America:** 1 availability zone
+
+### 99.99% Uptime SLA
+
+**Edge Locations:** 50+ cities globally
+
+</div>
+
+---
+
 # Security Features
 
 ## Authentication Methods
