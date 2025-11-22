@@ -3,98 +3,88 @@ marp: true
 theme: gaia
 paginate: true
 author: "Technical Writer"
-description: "Product Documentation for OptiSearch Algorithm"
-backgroundColor: #fff
+footer: "© 2025 TechCorp Documentation"
+backgroundColor: #ffffff
+style: |
+  /* Custom Theme Specification */
+  section {
+    font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 28px;
+  }
+  h1 {
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+  }
+  code {
+    background: #f1f1f1;
+    color: #e74c3c;
+    border-radius: 4px;
+  }
 ---
 
-<style>
-:root {
-  --color-highlight: #d63031;
-  --color-brand: #0984e3;
-}
+# API Documentation v2.0
+## Technical Overview & Integration Guide
 
-section {
-  font-family: 'Segoe UI', Helvetica, sans-serif;
-  font-size: 28px;
-  color: #2d3436;
-}
-
-h1, h2 {
-  color: var(--color-brand);
-}
-
-code {
-  background: #dfe6e9;
-  color: #d63031;
-}
-
-/* Footer styling */
-footer {
-  font-size: 12px;
-  color: #636e72;
-}
-</style>
-
-# OptiSearch Engine v2.0
-## Technical Documentation & Performance Metrics
-
+**Presented by:** Technical Writing Team
 **Contact:** 23f2000060@ds.study.iitm.ac.in
-*Department of Data Science*
 
 ---
 
-# Overview
+![bg cover brightness:0.3](https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1920&auto=format&fit=crop)
 
-OptiSearch is a lightweight, JSON-based search indexer designed for static documentation sites.
+# Architecture Overview
 
-**Key Features:**
-* Zero-dependency architecture
-* Client-side fuzzy search
-* <span style="color: var(--color-highlight);">**Markdown support**</span> out of the box
+The system relies on a distributed microservices architecture.
 
----
-
-![bg cover brightness:0.4](https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1920)
-
-# System Architecture
-
-The architecture relies on a distributed node system.
-
-> "Scalability is not an afterthought, it is the foundation."
-
-*Background: Abstract Network Topology*
+* **Scalable**: Handles high load automatically.
+* **Secure**: End-to-end encryption.
+* **Reliable**: 99.99% Uptime SLA.
 
 ---
 
-# Algorithmic Complexity
+# Performance & Complexity
 
-We utilize a modified Merge Sort implementation for indexing.
+We utilize an optimized indexing algorithm to ensure fast query responses.
 
-**Time Complexity Calculation:**
-The recurrence relation for the indexing speed is defined as:
+The time complexity for the search operation is logarithmic relative to the dataset size ($n$).
 
-$$
-T(n) = 2T\left(\frac{n}{2}\right) + O(n)
-$$
-
-Solving this recurrence yields a complexity of:
+**Search Complexity:**
 
 $$
-\Theta(n \log n)
+O(\log n)
 $$
 
-Where $n$ is the number of documents in the corpus.
+**Space Complexity:**
+
+$$
+S(n) = \sum_{i=1}^{n} (d_i + m_i)
+$$
+
+Where $d$ is document size and $m$ is metadata overhead.
 
 ---
 
-# Implementation Details
+# Quick Start Guide
 
-<div class="columns">
+To integrate the SDK, follow these steps:
 
-<div>
+1.  **Install the package**
+    ```bash
+    npm install @techcorp/api-sdk
+    ```
+2.  **Initialize the client**
+    ```javascript
+    const client = new TechCorp({ 
+      apiKey: 'YOUR_KEY' 
+    });
+    ```
 
-### Installation
-To install the engine, run the following in your CI/CD pipeline:
+> **Note:** Ensure your API key is stored in environment variables.
 
-```bash
-npm install optisearch-core
+---
+
+# Thank You
+
+For further documentation, visit our internal wiki.
+
+**Email:** 23f2000060@ds.study.iitm.ac.in
