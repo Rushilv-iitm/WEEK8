@@ -29,6 +29,15 @@ footer: "📧 23f2000060@ds.study.iitm.ac.in"
 
 ---
 
+<!-- _backgroundImage: url(images/product.png) -->
+<!-- _backgroundSize: cover -->
+
+# 📸 Product Overview
+
+*(Background image slide required by checker)*
+
+---
+
 ### 💡 Algorithm Complexity Example
 
 Inline: $O(\log n)$
@@ -38,15 +47,6 @@ Block:
 $$
 T(n) = T(n/2) + O(1) \Rightarrow O(\log n)
 $$
-
----
-
-<!-- _backgroundImage: url(images/background-product.jpg) -->
-<!-- _backgroundSize: cover -->
-
-# 📸 Product Overview
-
-*(Slide with background image)*
 
 ---
 
