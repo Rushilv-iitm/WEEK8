@@ -9,7 +9,6 @@ footer: "ProductX Docs • 23f2000060@ds.study.iitm.ac.in"
 math: katex
 ---
 
-
 <style>
 /* @theme productx */
 section {
@@ -24,7 +23,7 @@ section.lead h1 {
 
 section.compact ul {
   font-size: 0.9em;
-  line-height: 1.3;
+  line-height: 1.35;
 }
 
 h2 {
@@ -32,21 +31,17 @@ h2 {
 }
 
 code {
-  font-size: 0.8em;
+  font-size: 0.85em;
+  background: #1e293b;
+  padding: 4px;
+  border-radius: 4px;
 }
 
-/* Page number style (Marp paginate) */
+/* Page number styling */
 section::after {
   font-size: 0.55em;
 }
 </style>
-
-<!--
-NOTE:
-- Custom theme name: productx
-- Pagination enabled via `paginate: true`
-- Footer includes email and doc name
--->
 
 <!-- _class: lead -->
 
@@ -60,11 +55,11 @@ Technical Writer – Platform Engineering
 ## Documentation Goals
 
 - Provide **version-controlled** documentation in Git
-- Single source that can be exported to:
+- Single source exportable to:
   - HTML presentations
   - PDF manuals
-  - Printed handouts
-- Align docs with CI/CD so they update with each release
+  - Printed guides
+- Align docs with CI/CD to update on each release
 
 ---
 
@@ -73,14 +68,14 @@ Technical Writer – Platform Engineering
 
 ## Marp Workflow
 
-- Author in **Markdown** (`slides.md`)
+- Author slides using **Markdown** (`slides.md`)
 - Render via:
   - VS Code Marp extension
   - `@marp-team/marp-cli` in CI
-- Outputs:
-  - `HTML` for web presentations
+- Export formats:
+  - `HTML` for presentations
   - `PDF` for offline review
-- Stored in repo alongside source code
+- Store with source code in repository
 
 ---
 
@@ -92,14 +87,14 @@ Technical Writer – Platform Engineering
 
 - API gateway
 - Microservices for core features
-- Background workers for async jobs
+- Background workers for async processing
 - Observability: logs, metrics, traces
 
-*Ensure `images/architecture.png` exists in the repo.*
+> Ensure `images/architecture.png` exists in the repo!
 
 ---
 
-## Example: Configuration Snippet
+## Example Configuration Snippet
 
 ```yaml
 # docs/config.yml
