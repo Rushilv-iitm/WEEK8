@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Quarterly Earnings Report – Interactive Deck</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Reveal.js core CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/reveal.css" />
+    <!-- Theme -->
+    <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/theme/black.css" id="theme" />
+    <!-- Code syntax highlighting theme -->
+    <link rel="stylesheet" href="https://unpkg.com/reveal.js/plugin/highlight/monokai.css" />
+
+    <style>
+      .subtitle {
+        font-size: 0.8em;
+        opacity: 0.8;
+      }
+      .kpi {
+        font-size: 1.8em;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <!-- TITLE SLIDE -->
+        <section>
+          <h1>Quarterly Earnings Report</h1>
+          <h3>Q4 FY 2025 – Executive Overview</h3>
+          <p class="subtitle">
+            Prepared by: Technical Consultant – Financial Analytics<br />
+            Contact: <strong>23f2000060@ds.study.iitm.ac.in</strong>
+          </p>
+          <aside class="notes">
+            Welcome everyone. This deck demonstrates a modern, interactive
+            presentation of the quarterly earnings report using RevealJS.
+            I’ll walk through business performance, key KPIs, and a brief
+            look at the analytics stack powering these numbers.
+          </aside>
+        </section>
+
+        <!-- MARKDOWN SLIDE (data-markdown) -->
+        <section data-markdown>
+          <textarea data-template>
+### Agenda (Markdown Slide)
+
+1. **Financial Highlights**
+2. Segment-wise Performance
+3. Cash Flow & Liquidity
+4. Risk & Compliance
+5. Technology & Analytics Stack
+6. Q&amp;A
+
+*This slide is written in Markdown and rendered by RevealJS.*
+          </textarea>
+          <aside class="notes">
+            Call out that this slide is authored in Markdown.
+            Stakeholders who prefer text-based workflows (e.g., version-controlled
+            decks) will appreciate this capability.
+          </aside>
+        </section>
+
+        <!-- ANIMATED FRAGMENTS -->
+        <section>
+          <h2>Key Financial Highlights</h2>
+          <p class="kpi fragment">Revenue Growth: <strong>+12.4% YoY</strong></p>
+          <p class="kpi fragment">Net Income: <strong>+8.9% YoY</strong></p>
+          <p class="kpi fragment">Operating Margin: <strong>21.3%</strong></p>
+          <p class="fragment">EPS (Diluted): <strong>$4.32</strong></p>
+
+          <aside class="notes">
+            Reveal each metric one by one using fragments.
+            Pause briefly on each number and relate it to prior guidance
+            and market expectations.
+          </aside>
+        </section>
+
+        <!-- CODE SAMPLE WITH SYNTAX HIGHLIGHTING -->
+        <section>
+          <h2>Example: Computing Quarterly Returns</h2>
+          <pre><code class="language-python">
+def quarterly_return(start_price, end_price, dividends=0.0):
+    """
+    Simple quarterly return calculation.
+
+    R_q = (P_end - P_start + D) / P_start
+    """
+    return (end_price - start_price + dividends) / start_price
+
+# Example: stock went from 100 to 112 with 1 unit dividend
+rq = quarterly_return(100, 112, dividends=1)
+print(f"Quarterly return: {rq:.2%}")
+          </code></pre>
+
+          <aside class="notes">
+            Explain that analytics pipelines often embed financial formulas
+            in production code. This is a simple Python example, but in
+            practice we would integrate this into risk and reporting stacks.
+          </aside>
+        </section>
+
+        <!-- MATH / FINANCIAL FORMULAS -->
+        <section>
+          <h2>NPV and Discounted Cash Flows</h2>
+          <p class="fragment">
+            Net Present Value (NPV) of a project with cash flows \( CF_t \) and
+            discount rate \( r \):
+          </p>
+
+          <p class="fragment">
+            \[
+              \text{NPV} = \sum_{t=1}^{T} \frac{CF_t}{(1 + r)^t} - CF_0
+            \]
+          </p>
+
+          <p class="fragment">
+            Internal Rate of Return (IRR) is the rate \( r^* \) such that:
+          </p>
+
+          <p class="fragment">
+            \[
+              0 = \sum_{t=1}^{T} \frac{CF_t}{(1 + r^*)^t} - CF_0
+            \]
+          </p>
+
+          <aside class="notes">
+            Use this slide to connect financial theory to actual project
+            evaluation. Mention that our treasury and FP&amp;A teams rely
+            heavily on NPV/IRR analysis for capital allocation decisions.
+          </aside>
+        </section>
+
+        <!-- MORE FRAGMENTS + NOTES -->
+        <section>
+          <h2>Technology &amp; Analytics Stack</h2>
+          <ul>
+            <li class="fragment">Data Lake on cloud object storage</li>
+            <li class="fragment">Streaming ingestion for market &amp; transaction data</li>
+            <li class="fragment">Python/R-based risk models in containerized services</li>
+            <li class="fragment">Interactive dashboards for Finance &amp; Risk teams</li>
+          </ul>
+
+          <aside class="notes">
+            Emphasize that the same infrastructure that powers earnings
+            analytics also supports regulatory reporting and stress testing.
+            Highlight scalability, resilience, and governance controls.
+          </aside>
+        </section>
+
+        <!-- CLOSING SLIDE WITH EMAIL -->
+        <section>
+          <h2>Thank You</h2>
+          <p>For follow-up questions or detailed analytics:</p>
+          <p><strong>23f2000060@ds.study.iitm.ac.in</strong></p>
+
+          <aside class="notes">
+            Invite questions and let stakeholders know a more detailed
+            technical appendix is available if required.
+          </aside>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/reveal.js/dist/reveal.js"></script>
+    <script src="https://unpkg.com/reveal.js/plugin/markdown/markdown.js"></script>
+    <script src="https://unpkg.com/reveal.js/plugin/highlight/highlight.js"></script>
+    <script src="https://unpkg.com/reveal.js/plugin/math/math.js"></script>
+
+    <script>
+      Reveal.initialize({
+        hash: true,
+        slideNumber: true,
+        plugins: [ RevealMarkdown, RevealHighlight, RevealMath.KaTeX ],
+        math: {
+          // KaTeX is the default for RevealMath.KaTeX
+          // you can customize options here if needed
+        }
+      });
+    </script>
+  </body>
+</html>
