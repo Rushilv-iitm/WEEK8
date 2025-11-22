@@ -6,7 +6,9 @@ theme: productx
 paginate: true
 paginate-align: center
 footer: "ProductX Docs • 23f2000060@ds.study.iitm.ac.in"
+math: katex
 ---
+
 
 <style>
 /* @theme productx */
