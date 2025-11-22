@@ -206,16 +206,19 @@ Space Complexity: $O(n)$ for cache
 
 **Throughput Equation:**
 
-$$
+$
 T = \frac{R \times C}{L + P}
-$$
+$
 
-Where:
-- $T$ = Throughput
-- $R$ = Request rate
-- $C$ = Connections
-- $L$ = Latency
-- $P$ = Processing time
+Where: $T$ = Throughput, $R$ = Request rate, $C$ = Connections, $L$ = Latency, $P$ = Processing time
+
+**Little's Law:**
+
+$
+L = \lambda \times W
+$
+
+$L$ = avg requests in system, $\lambda$ = arrival rate, $W$ = avg time in system
 
 </div>
 
@@ -265,11 +268,51 @@ Route requests based on:
 
 Implement the **Token Bucket Algorithm**:
 
-$$
-\text{tokens}(t) = \min(b, \text{tokens}(t-1) + r \times \Delta t)
-$$
+$
+\text{tokens}(t) = \min\left(b, \text{tokens}(t-1) + r \times \Delta t\right)
+$
 
-Where $b$ = bucket capacity, $r$ = refill rate
+Where $b$ = bucket capacity, $r$ = refill rate, $\Delta t$ = time elapsed
+
+**Request acceptance condition:**
+
+$
+\text{accept} = 
+\begin{cases} 
+\text{true} & \text{if tokens}(t) \geq c \\
+\text{false} & \text{otherwise}
+\end{cases}
+$
+
+where $c$ is the cost per request (usually 1)
+
+---
+
+# Capacity Planning Mathematics
+
+## Throughput Calculation
+
+**Maximum Theoretical Throughput:**
+
+$
+T_{\max} = \frac{C \cdot N}{L_{\text{avg}} + P_{\text{avg}}}
+$
+
+$C$ = connections per server, $N$ = number of servers, $L_{\text{avg}}$ = avg latency, $P_{\text{avg}}$ = avg processing time
+
+## Percentile Calculations
+
+For sorted response times $[t_1, t_2, \ldots, t_n]$:
+
+$
+P_{xx} = t_{\left\lceil \frac{xx \cdot n}{100} \right\rceil}
+$
+
+**Tail Latency Amplification** (when calling $k$ services):
+
+$
+P_{99}^{\text{composite}} = 1 - (1 - P_{99}^{\text{single}})^k
+$
 
 ---
 
@@ -330,6 +373,32 @@ headers: {
 
 ---
 
+# Mathematical Foundations
+
+## Queueing Theory
+
+**M/M/1 Queue Response Time:**
+
+$
+W = \frac{1}{\mu - \lambda}
+$
+
+where $\mu$ = service rate, $\lambda$ = arrival rate (requires $\lambda < \mu$)
+
+**System Utilization:**
+
+$
+\rho = \frac{\lambda}{\mu}, \quad 0 \leq \rho < 1
+$
+
+**Average Queue Length (Little's Law):**
+
+$
+L = \lambda W = \frac{\rho}{1-\rho}
+$
+
+---
+
 # Advanced Configuration
 
 ## Load Balancing Strategies
@@ -348,8 +417,16 @@ interface LoadBalancerConfig {
 
 **Algorithm Complexity:**
 - Round Robin: $O(1)$ per request
-- Least Connection: $O(n)$ per request
+- Least Connection: $O(n)$ per request, can be optimized to $O(\log n)$ with heap
 - IP Hash: $O(1)$ with consistent hashing
+
+**Consistent Hashing Load Balance:**
+
+$
+\sigma = \sqrt{\frac{1}{m} \sum_{i=1}^{m} \left(\frac{n_i}{n} - \frac{1}{m}\right)^2}
+$
+
+where $\sigma$ is standard deviation, $m$ = servers, $n_i$ = load on server $i$, $n$ = total load
 
 ---
 
@@ -449,14 +526,16 @@ interface GatewayConfig {
 ## Key Optimization Techniques
 
 1. **Connection Pooling**: Reuse TCP connections
-   - Pool size: $n = \lceil \frac{\text{max\_concurrent\_requests}}{\text{connections\_per\_backend}} \rceil$
+   - Optimal pool size: $n = \left\lceil \frac{R_{\max}}{C_b} \right\rceil$ where $R_{\max}$ = max concurrent requests, $C_b$ = connections per backend
 
 2. **Request Batching**: Combine multiple requests
-   - Efficiency gain: $O(n) \rightarrow O(1)$ for $n$ requests
+   - Amortized complexity: $O(n) \rightarrow O(1)$ for $n$ requests
+   - Latency reduction: $L_{\text{batched}} = \frac{L_{\text{single}}}{b}$ where $b$ = batch size
 
 3. **Compression**: Reduce payload size
-   - gzip: 70-90% reduction for JSON
-   - Brotli: Up to 95% for text content
+   - Compression ratio: $r = \frac{S_{\text{original}}}{S_{\text{compressed}}}$
+   - gzip: $r \approx 3-10$ for JSON/text
+   - Transfer time saved: $\Delta T = \frac{S_{\text{original}} - S_{\text{compressed}}}{B}$ where $B$ = bandwidth
 
 ---
 
@@ -495,9 +574,21 @@ Gradually roll out to percentage of traffic:
 
 **Algorithm Enhancement**: Implementing consistent hashing with bounded loads for better load distribution
 
-$$
-\text{load}(s) \leq \lceil \frac{1 + \epsilon}{n} \cdot \text{total\_load} \rceil
-$$
+**Bounded Load Formula:**
+
+$
+\text{load}(s) \leq \left\lceil \frac{1 + \epsilon}{n} \cdot L_{\text{total}} \right\rceil
+$
+
+where $\epsilon$ = load imbalance factor, $n$ = servers, $L_{\text{total}}$ = total load
+
+**Jump Consistent Hash:**
+
+$
+h(k, b) = \arg\max_{j \in [0,b)} \left\{ j : \text{random}(k, j) < \frac{j}{b} \right\}
+$
+
+Provides $O(1)$ average case and $O(\log n)$ worst case for bucket assignment
 
 ---
 
